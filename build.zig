@@ -11,26 +11,24 @@ pub fn build(b: *std.Build) void {
     });
 
     const exe = b.addExecutable(.{
-        .name = "ray_trace_tui",
+        .name = "zigray",
         .root_module = exe_mod,
     });
     b.installArtifact(exe);
 
     const exe_check = b.addExecutable(.{
-        .name = "ray_trace_tui",
+        .name = "zigray",
         .root_module = exe_mod,
     });
 
-    const check = b.step("check", "Check if ray_trace_tui compiles");
+    const check = b.step("check", "Check if zigray compiles");
     check.dependOn(&exe_check.step);
 
     const run_step = b.step("run", "Run the app");
     const run_cmd = b.addRunArtifact(exe);
     run_step.dependOn(&run_cmd.step);
     run_cmd.step.dependOn(b.getInstallStep());
-    if (b.args) |args| {
-        run_cmd.addArgs(args);
-    }
+    run_cmd.addPassthruArgs();
 
     const exe_tests = b.addTest(.{
         .root_module = b.createModule(.{

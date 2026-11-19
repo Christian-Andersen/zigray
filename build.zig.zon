@@ -1,8 +1,8 @@
 .{
-    .name = .ray_trace_tui,
+    .name = .zigray,
     .version = "0.0.0",
-    .fingerprint = 0xbca253024aa8b7f0,
-    .minimum_zig_version = "0.16.0",
+    .fingerprint = 0x2be27ac22b411dca,
+    .minimum_zig_version = "0.17.0",
     .dependencies = .{},
     .paths = .{
         "build.zig",
